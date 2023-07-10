@@ -1,0 +1,50 @@
+*,*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+}
+.min-h-100{
+    min-height: 100vh;
+}
+.max-h-100{
+    max-height: 100vh;
+}
+.h-vh{
+    height: 100vh;
+}
+a{
+    text-decoration: none;
+}
+.lead {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+.text-break{
+    word-wrap: break-word;
+    word-break: break-all;
+}
+// div {
+//     // text-transform: uppercase;
+//     // border: 2px solid $secondary;
+//     h2{
+//         font-size: 2em;
+//         color: $info;
+//     }
+//     button{
+//         position: relative;
+//         width: 155px;
+//         height: 50px;
+//         margin: 20px;
+//         outline: none;
+//         border:none;
+//         border-radius: 20px;
+//         padding: 20px;
+//         color: $secondary;
+//         cursor: pointer;
+//         font-size: 20px;
+//     }
+// }

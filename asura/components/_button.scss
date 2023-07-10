@@ -1,0 +1,142 @@
+@use 'sass:math';
+@mixin btn($bg-color:#e2e2e2) {
+    text-decoration: none;
+    border-radius:$border-rad;
+    cursor: pointer;
+    padding:$padding-a $padding-a*2;
+    display:inline-block;
+    border: 0;
+    background-color: $bg-color;
+}
+.btn{
+    @include btn;
+}
+
+@each $key,$val in $colors{
+    .btn-#{$key}{
+        @include btn($val);
+        &:hover{
+            background-color: lighten($color: $val, $amount: 5)
+        }
+    }
+    .btn-outline-#{$key}{
+        @include btn(#fff);
+        border: $a-border-thickness solid $val;
+        &:hover{
+            background-color: $val;
+        }
+    }
+    .btn-complement-#{$key}{
+        @include btn($val);
+        color: light-comp($val);
+        &:hover{
+            color: $val;
+            background-color: light-comp($val);
+        }
+    }
+}
+// @debug "button";
+button.btn-awe{
+    outline:none;
+    border-radius: 30px;
+    border: 2px solid transparent;
+}
+.btn-awe{
+    position: relative;
+    width: 155px;
+    height: 50px;
+    margin: 20px;
+    a{
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       background: rgba(255,255,255,.05);
+       box-shadow: 0 15px 35px rgba(0,0,0,.2);
+       border-top: 1px solid rgba(255,255,255,.1);
+       border-bottom: 1px solid rgba(255,255,255,.1);
+       border-radius: 30px;
+       color: #fff;
+       z-index: 1;
+       font-weight: 400;
+       letter-spacing: 1px;
+       text-decoration: none;
+       overflow: hidden;
+       transition: .5s;
+       backdrop-filter: blur(15px);
+   }
+   a::before{
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 50%;
+       height: 100%;
+       background: linear-gradient(to left, rgba(255,255,255,.15),transparent);
+       transform: skewX(45deg) translateX(0);
+       transition: .5s;
+   }
+   &:hover a{
+       letter-spacing: 3px;
+   }
+   &:hover:before{
+    bottom: 0;
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+    transition-delay: .5s;
+    }
+    &:hover a::before{
+    transform: skewX(45deg) translateX(200%);
+    }
+    &::before{
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -5px;
+        width: 30px;
+        height: 10px;
+        background: #ff1f71;
+        box-shadow: 0 0 5px #ff1f71, 0 0 10px #ff1f71, 0 0 20px #ff1f71, 0 0 30px #ff1f71;
+        border-radius: 10px;
+        transition: 0s;
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -5px;
+        width: 30px;
+        height: 10px;
+        background: #ff1f71;
+        box-shadow: 0 0 5px #ff1f71, 0 0 10px #ff1f71, 0 0 20px #ff1f71, 0 0 30px #ff1f71;
+        border-radius: 10px;
+        transition: 0s;
+    }
+    &:hover::after{
+        top: 0;
+        height: 50%;
+        width: 80%;
+        border-radius: 30px;
+        transition-delay: .5s;
+    }
+}
+@each $key,$val in $colors{
+    .btn-awe-#{$key}{
+        @extend .btn-awe;
+        &::before{
+            background-color: $val;
+            box-shadow: 0 0 5px $val, 0 0 10px $val, 0 0 20px $val, 0 0 30px $val;
+        }
+        &::after{
+            background-color: $val;
+            box-shadow: 0 0 5px $val, 0 0 10px $val, 0 0 20px $val, 0 0 30px $val;
+        }
+    }
+}

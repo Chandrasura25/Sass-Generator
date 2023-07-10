@@ -1,0 +1,136 @@
+$primary :#326dee !default;
+$secondary :#1ac888 !default;
+$error:#d32752;
+$info:#f6c31c;
+$blue-2: #00d2ff;
+$background-card: rgba(255, 255, 255, 0.1);
+$i: unquote("!important");
+//color palette
+$colors:(
+    "primary":$primary,
+    "secondary":$secondary,
+    "error":$error,
+    "info":$info,
+    "blue":#1919eb,
+    "red":#e61919,
+    "yellow":#e6e619,
+    "green":#19e635,
+    "orange":#ffa600,
+    "purple":#9900ff,
+    "grey":#808080,
+    'brown':brown,
+    'gray':gray,
+    'tomato':tomato,
+    "black":black,
+    "white":white,
+    "teal":#008080,
+    "lime":#00FF00,
+    "glass":$background-card,
+    "pink":#ec7a8d,
+    "gold": #FFD700,
+    "chocolate":#D2691E,
+    'peru':peru,
+    "transparent":transparent,
+);
+$gradients:(
+    "primary":linear-gradient(90deg,#0162c8,#55e7fc),
+    "info": linear-gradient(90deg,#755bea,#ff72c0),
+    "error":linear-gradient(90deg,#d32752,#e61919),
+    "secondary":linear-gradient(90deg,#69c069,#77dd77),
+    "bluered":linear-gradient(90deg, #0072ff,#ff0058),
+    "pinkblue":linear-gradient(135deg,#f403d1,#64b5f6),
+    "blue":linear-gradient(#01d6ff,#0f24f9),
+    "green":linear-gradient(#2196f3,#31ff38),
+    "orange": linear-gradient(90deg,#bb4622,#df7214),
+    "purple": linear-gradient(#9c27b0,#f3f5),
+    "lime":linear-gradient(135deg,#008080,#00FF00),
+    "yellowpink":linear-gradient(135deg,#ffec61,#f321d7),
+    "bluepink":linear-gradient(90deg, #00dbde 0%,#fc00ff 100% ),
+    "greenyellow":  linear-gradient(135deg,#24ff72,#FFD700),
+    "pinkpurple":linear-gradient(#ff2871,rgba(255,40,113,.7))
+);
+$card-gradients:(
+    "primary":linear-gradient(315deg,#0162c8,#55e7fc),
+    "info": linear-gradient(315g,#755bea,#ff72c0),
+    "error":linear-gradient(315deg,#d32752,#e61919),
+    "secondary":linear-gradient(315deg,#69c069,#77dd77),
+    "bluered":linear-gradient(315deg, #0072ff,#ff0058),
+    "pinkblue":linear-gradient(315deg,#f403d1,#64b5f6),
+    "blue":linear-gradient(315deg,#01d6ff,#0f24f9),
+    "green":linear-gradient(315deg,#2196f3,#31ff38),
+    "orange": linear-gradient(315deg,#bb4622,#df7214),
+    "purple": linear-gradient(315deg,#9c27b0,#f3f5),
+    "lime":linear-gradient(315deg,#008080,#00FF00),
+    "yellowpink":linear-gradient(315deg,#ffec61,#f321d7),
+    "bluepink":linear-gradient(315deg, #00dbde 0%,#fc00ff 100% ),
+    "greenyellow":linear-gradient(315deg,#24ff72,#FFD700),
+    "pinkpurple":linear-gradient(315deg,#ff2871,rgba(255,40,113,.7)),
+    "card-1": linear-gradient(315deg,#ffbc00,#ff0058),
+    "card-2": linear-gradient(315deg,#03a9f4,#ff0058),
+    "card-3": linear-gradient(315deg,#4dff03,#00d0ff),
+    
+);
+// @debug map-get($map: $colors, $key: "purple");
+// @debug map-remove($map: $colors, $key:"yellow");
+// @debug map-merge($colors,("pink":#ffc0cb));
+// @debug map-merge($map1: $colors, $map2:("pink":#ffc0cb));
+
+// .text-purple{
+//    color: map-get($map: $colors, $key:"purple");
+// }
+
+// borders
+$bord:5px solid black;
+$a-border:1px solid rgba(255, 255, 255, 0.5);
+$a-border-thickness:2px;
+$border-top-card: 1px solid rgba(255, 255, 255, 0.5);
+$border-left-card: 1px solid rgba(255, 255, 255, 0.5);
+$a-border-right:1px solid rgba(255, 255, 255, 0.2);
+$a-border-bottom:1px solid rgba(255, 255, 255, 0.2);
+// $box-shadow-card: 20px 20px 50px rgba(0, 0, 0, 0.5);
+$box-shadow-card:0 0.5em 1em rgba(0, 0, 0, 0.15) ;
+$box-shadow-1: 0 0.125em 0.25em rgba(0, 0, 0, 0.075);
+$box-shadow-2:0 0.75em 2em rgba(0, 0, 0, 0.125);
+$box-shadow-3: 0 1em 3em rgba(0, 0, 0, 0.175) ;
+$box-shadow-4: 0 2em 4em rgba(0, 0, 0, 0.2);
+$box-shadow-5: 0 3em 5em rgba(0, 0, 0, 0.5);
+
+// line height
+$line-height:1;
+
+
+// border-radius
+$border-rad :20px;
+$border-rad2:18px;
+$border-radius-card: 15px;
+
+// spacing
+$marg-x:0.25em;
+$marg:10px;
+$margin-c: 30px;
+$margin-a:0.75em;
+
+
+$padding-bay:10px 0;
+$padding-a:0.75em;
+
+// box-shadow
+$a-box-shadow: 0 15px 35px rgba(0,0,0,.2);
+$b-box-shadow:0 25px 45px rgba(0, 0, 0, 0.1);
+
+
+// font-sizes
+$a-font-size:1rem;
+$a-font-size-sm:$a-font-size * 0.75;
+$a-font-size-md:$a-font-size * 1.25;
+$a-font-size-lg:$a-font-size * 1.5;
+$a-font-size-xl:$a-font-size * 2;
+$a-font-size-xxl:$a-font-size * 3;
+
+
+// backdrop-filter
+$backdrop-filter-card: blur(5px);
+$backdrop-filter-a: blur(20px);
+
+// transition
+$transition:1s;

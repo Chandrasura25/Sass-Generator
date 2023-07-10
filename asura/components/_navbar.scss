@@ -1,0 +1,42 @@
+%flex-layout{
+    width:100%;
+    position: relative;
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar{
+    @extend %flex-layout;
+    padding: $padding-a $padding-a*2;
+    box-shadow: $box-shadow-card;
+    .site-title{
+        font-size: $a-font-size-lg;
+    }
+    .container{
+        @extend %flex-layout;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        @extend %flex-layout;
+
+    li{
+        display: inline;
+        a{
+            display: block;
+            text-decoration:none;
+        }
+    }
+}
+}
+@each $key,$val in $colors {
+    .navbar-#{$key}{
+        @extend .navbar;
+        background-color:$val;
+    }
+    .navbar-#{$key} ul li a.active{
+        background-color:$val;
+    }
+}

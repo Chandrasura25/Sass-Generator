@@ -1,0 +1,85 @@
+@use 'sass:math';
+@mixin table($bg-color:$background-card) {
+    cursor: pointer;
+    width: 100%;
+    margin: auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: $bg-color;
+}
+.table{
+    @include table();
+    th,td{
+      border-bottom: 1px solid gray;
+      border-collapse: collapse;
+      padding: 20px;
+      font-size: 20px;
+    }
+    th{
+        background: grey;
+        padding: 20px;
+        text-transform: uppercase;
+    }
+    tr:nth-child(odd){
+        background-color: rgb(163, 163, 163);
+    }
+
+    tr:nth-child(even){
+        background-color: #f1eded;
+    }
+}
+.table-bordered{
+   @extend .table; 
+   th,td{
+      border: 1px dotted gray;
+   }
+}
+.table-hover{
+     tr:nth-child(even):hover {
+        background-color: rgb(233, 223, 223);
+        color: white;
+        transition:transform 0.5s ease-in-out;
+        transform: scale(1.02);
+    }
+        tr:nth-child(odd):hover {
+        background-color: rgb(185, 178, 178);
+        color: white;
+        transition:transform 0.5s ease-in-out;
+        transform: scale(1.02);
+    }
+}
+@each $key,$val in $colors {
+    .table-#{$key}{
+        @extend .table;
+        background:$val;
+        th{
+            background:$val;
+        }   
+        tr:nth-child(odd){
+            background:$val;
+            // &:hover{
+            //     background-color: lighten($color: $val, $amount: 5)
+            // }
+        } 
+        tr:nth-child(even){
+            background:$val;
+            // &:hover{
+            //     background-color: lighten($color: $val, $amount: 5)
+            // }
+        } 
+        tr:nth-child(odd):hover > body {
+            background-color: lighten($color: $val, $amount: 5)
+        }
+        tr:nth-child(even):hover {
+            @extend .table-hover;
+            background-color: lighten($color: $val, $amount: 5)
+            
+        }
+        tr:nth-child(odd):hover {
+            @extend .table-hover;
+            background-color: lighten($color: $val, $amount: 5)
+        }
+    }
+   
+}

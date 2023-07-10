@@ -1,0 +1,57 @@
+@each $key,$val in $colors {
+    .text-#{$key}{
+        color: $val $i;
+    }
+    .text-hover-#{$key}{
+       &:hover{
+        color: $val $i;
+       }
+    }
+    .bg-#{$key}{
+        background: $val $i;
+    }
+     @if ($val != black and $val != white) {
+    // light variations
+    @for $j from 1 to 9 {
+      .text-#{$key}-light-#{$j}{
+        color: mix(white, $val,$j * 10) $i;
+      } 
+      .text-hover-#{$key}-light-#{$j}{
+        &:hover{
+            color: mix(white, $val,$j * 10) $i;
+        }
+     } 
+      .bg-#{$key}-light-#{$j}{
+        background-color: mix(white, $val,$j * 10) $i;
+      }  
+    }
+       // dark variations
+    @for $j from 1 to 9 {
+      .text-#{$key}-dark-#{$j}{
+          color: mix(black, $val,$j * 10) $i;
+        }  
+        .text-hover-#{$key}-dark-#{$j}{
+            &:hover{
+                color: mix(black, $val,$j * 10) $i;
+            }
+         } 
+        .bg-#{$key}-dark-#{$j}{
+          background-color: mix(black, $val,$j * 10) $i;
+        }  
+      }
+    }
+}
+// gradients
+@each $key,$val in $gradients {
+  .text-g-#{$key}{
+      color: $val $i;
+  }
+  .text-g-hover-#{$key}{
+     &:hover{
+      color: $val $i;
+     }
+  }
+  .bg-g-#{$key}{
+      background: $val $i;
+  } 
+}

@@ -1,0 +1,552 @@
+@use 'sass:math';
+$grid-columns:12;
+$grid-gaps:(
+  "0":0,
+  "1":10px,
+  "2":20px,
+  "3":30px,
+  "4":40px,
+  "5":50px
+);
+$mx:(
+    "0":0,
+    "auto":auto,
+    "1":$marg-x,
+    "2":$marg-x * 2,
+    "3":$marg-x * 3,
+    "4":$marg-x * 4,
+    "5":$marg-x * 5,  
+    "6":$marg-x * 6,  
+    "7":$marg-x * 7,  
+    "8":$marg-x * 8,  
+    "9":$marg-x * 9,  
+);
+@each $key,$val in $mx{
+    .my-#{$key}{
+        margin-top: $val $i;
+        margin-bottom: $val $i;
+    }
+    .mx-#{$key}{
+        margin-left: $val $i;
+        margin-right: $val $i;
+    }
+    .py-#{$key}{
+        padding-top: $val $i;
+        padding-bottom: $val $i;
+    }
+    .px-#{$key}{
+        padding-left: $val $i;
+        padding-right: $val $i;
+    }
+}
+
+// justify-content property
+$layout-values:flex-start,flex-end,center,space-around,space-evenly,space-between;
+
+// align-items property
+$align-values:auto,flex-start,flex-end,center,baseline,stretch;
+
+// text-position property
+$text-values:center,start,end,justify,left,right;
+
+// text-transform property
+$text-transform-values:none,uppercase,lowercase,capitalize;
+
+// flex-direction 
+$flex-direction:row,column,column-reverse,row-reverse;
+
+// outline-style property
+$outline-values:dotted,dashed,solid,double,groove,ridge,inset,outset;
+$outline-width:thin,medium,thick;
+
+// float
+$float:left,right;
+
+$pointer-events:none,all,fill,stroke,visible;
+
+$cursor-events:pointer,alias,all-scroll,cell,auto,col-resize,copy,default,context-menu,crosshair,e-resize,ew-resize,copy,text,zoom-in,zoom-out,grab,grabbing,n-resize,w-resize,help,move,nesw-resize,no-drop,none,ne-resize,not-allowed,ns-resize,none,progress,ns-resize,nw-resize,nwse-resize,row-resize,s-resize,sw-resize,se-resize,wait,vertical-text;
+// vertical align
+$vertical-align-values:top,middle,baseline,bottom,text-bottom,text-top,auto,sub,super;
+
+// text-decoration
+$text-decor:none,overline,underline,dashed,dotted,double,line-through,solid,wavy;
+
+// position property
+$position-values:absolute,sticky,fixed,relative,static;
+
+//overflow property
+$overflow-values:auto,hidden,scroll,visible;
+$translate-val:-50%;
+@each $val in $translate-val{
+    .translate-center{
+        transform: translate($val,$val);
+    }
+    .translate-center-x{
+        transform: translateX($val);
+    }
+    .translate-center-y{
+        transform: translateY($val);
+    }
+    .translate-center-z{
+        transform: translateZ($val);
+    }
+}
+// justify content classes
+@each $val in $position-values{
+    @if ($val!= "fixed" and $val !='sticky') {
+        .position-#{$val}{
+            position: $val $i;
+        }
+    }
+    @else{
+        .position-#{$val}-top{
+            top:0;
+            z-index: 100;
+            position: $val $i;
+        }  
+        .position-#{$val}-bottom{
+            bottom:0;
+            z-index: 100;
+            position: $val $i;
+        }  
+    }
+}
+// flex-direction classes
+@each $val in $flex-direction{
+    .flex-#{$val}{
+        flex-direction: $val $i;
+    }
+}
+@each $val in $pointer-events{
+    .pe-#{$val}{
+        pointer-events: $val $i;
+    }
+}
+@each $val in $cursor-events{
+    .cursor-#{$val}{
+        cursor: $val $i;
+    }
+}
+// vertical align classes
+@each $val in $vertical-align-values{
+    .align-#{$val}{
+        vertical-align: $val $i;
+    }
+}
+// overflow classws
+@each $var in $overflow-values {
+    .overflow-#{$var}{
+        overflow: $var;
+    }
+    @if ($var == "hidden") {
+        .overflow-#{$var}-x{
+            overflow-x: $var;
+        } 
+        .overflow-#{$var}-y{
+            overflow-y: $var;
+        } 
+    }
+}
+
+// text-decoration classes
+@each $val in $text-decor{
+    .text-decoration-#{$val}{
+        text-decoration: $val $i;
+    }
+}
+// text-transform classes
+@each $val in $text-transform-values{
+    .text-transform-#{$val}{
+        text-transform: $val $i;
+    }
+}
+// outline classes
+@each $val in $outline-values{
+    .outline-s-#{$val}{
+        outline-style: $val $i;
+    }
+}
+@each $val in $outline-width{
+    .outline-#{$val}{
+        outline-width: $val $i;
+    }
+}
+// justify content classes
+@each $val in $layout-values{
+    .justify-#{$val}{
+        justify-content: $val $i;
+    }
+}
+// align content &align-item classes
+@each $val in $align-values{
+    .align-items-#{$val}{
+        align-items: $val $i;
+    }
+    .align-content-#{$val}{
+        align-content: $val $i;
+    }
+    .align-self-#{$val}{
+        align-self: $val $i;
+    }
+}
+@each $var in $float {
+    .float-#{$var}{
+        float:$var $i;
+    }
+}
+// text position classes
+@each $val in $text-values{
+    .text-#{$val}{
+        text-align:$val $i;
+    }
+}
+// base layout classes
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.container-fluid{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    width: 100%;
+    height: 100%;
+}
+.row{
+    display:flex;
+    flex-flow: row wrap;
+}
+.row  > * { 
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+
+}
+// grid gaps
+@each $key,$val in $grid-gaps {
+    .gap-#{$key} > * {
+       padding:$val $i;
+    }
+    .gap-#{$key}{
+        margin-left: -$val;
+        margin-right: -$val;
+    }
+}
+
+
+// col classes
+@include xs{
+    @for $i from 1 through $grid-columns{
+        .col-xs-#{$i}{
+            box-sizing: border-box;
+            flex-grow:0;
+            width: math.div($i * 100%,$grid-columns);
+        }
+    }
+    @each $key,$val in $mx{
+        .xs-my-#{$key}{
+            margin-top: $val;
+            margin-bottom: $val;
+        }
+        .xs-mx-#{$key}{
+            margin-left: $val;
+            margin-right: $val;
+        }
+        .xs-py-#{$key}{
+            padding-top: $val;
+            padding-bottom: $val;
+        }
+        .xs-px-#{$key}{
+            padding-left: $val;
+            padding-right: $val;
+        }
+    }
+    @each $val in $layout-values{
+        .xs-justify-#{$val}{
+            justify-content: $val;
+        }
+    }
+    @each $val in $align-values{
+        .xs-align-items-#{$val}{
+            align-items: $val;
+        }
+        .xs-align-content-#{$val}{
+            align-content: $val;
+        }
+        .xs-align-self-#{$val}{
+            align-self: $val;
+        }
+    }
+    @each $var in $float {
+        .xs-float-#{$var}{
+            float:$var;
+        }
+    }
+    @each $val in $text-values{
+        .xs-text-#{$val}{
+            text-align:$val;
+        }
+    }
+    @each $key,$val in $grid-gaps {
+        .xs-gap-#{$key}{
+            margin-left: -$val;
+            margin-right: -$val;
+        }
+    }
+}
+@include sm{
+    @for $i from 1 through $grid-columns{
+        .col-sm-#{$i}{
+            box-sizing: border-box;
+            flex-grow:0;
+            width: math.div($i * 100%,$grid-columns);
+        }
+    }
+    @each $key,$val in $mx{
+        .sm-my-#{$key}{
+            margin-top: $val;
+            margin-bottom: $val;
+        }
+        .sm-mx-#{$key}{
+            margin-left: $val;
+            margin-right: $val;
+        }
+        .sm-py-#{$key}{
+            padding-top: $val;
+            padding-bottom: $val;
+        }
+        .sm-px-#{$key}{
+            padding-left: $val;
+            padding-right: $val;
+        }
+    }
+    @each $val in $layout-values{
+        .sm-justify-#{$val}{
+            justify-content: $val;
+        }
+    }
+    @each $val in $align-values{
+        .sm-align-items-#{$val}{
+            align-items: $val;
+        }
+        .sm-align-content-#{$val}{
+            align-content: $val;
+        }
+        .sm-align-self-#{$val}{
+            align-self: $val;
+        }
+    }
+    @each $var in $float {
+        .sm-float-#{$var}{
+            float:$var;
+        }
+    }
+    @each $val in $text-values{
+        .sm-text-#{$val}{
+            text-align:$val;
+        }
+    }
+    @each $key,$val in $grid-gaps {
+        .sm-gap-#{$key}{
+            margin-left: -$val;
+            margin-right: -$val;
+        }
+    }
+
+}
+@include md{
+    @for $i from 1 through $grid-columns{
+        .col-md-#{$i}{
+            box-sizing: border-box;
+            flex-grow:0;
+            width: math.div($i * 100%,$grid-columns);
+        }
+    }
+        @each $val in $layout-values{
+        .md-justify-#{$val}{
+            justify-content: $val;
+        }
+    }
+    @each $val in $align-values{
+        .md-align-items-#{$val}{
+            align-items: $val;
+        }
+        .md-align-content-#{$val}{
+            align-content: $val;
+        }
+        .md-align-self-#{$val}{
+            align-self: $val;
+        }
+    }
+    @each $var in $float {
+        .md-float-#{$var}{
+            float:$var;
+        }
+    }
+    @each $val in $text-values{
+        .md-text-#{$val}{
+            text-align:$val;
+        }
+    }
+    @each $key,$val in $grid-gaps {
+        .md-gap-#{$key}{
+            margin-left: -$val;
+            margin-right: -$val;
+        }
+    }
+    @each $key,$val in $mx{
+        .md-my-#{$key}{
+            margin-top: $val;
+            margin-bottom: $val;
+        }
+        .md-mx-#{$key}{
+            margin-left: $val;
+            margin-right: $val;
+        }
+        .md-py-#{$key}{
+            padding-top: $val;
+            padding-bottom: $val;
+        }
+        .md-px-#{$key}{
+            padding-left: $val;
+            padding-right: $val;
+        }
+    }
+
+}
+@include lg{
+    @for $i from 1 through $grid-columns{
+        .col-lg-#{$i}{
+            box-sizing: border-box;
+            flex-grow:0;
+            width: math.div($i * 100%,$grid-columns);
+        }
+    }
+    @each $val in $layout-values{
+        .lg-justify-#{$val}{
+            justify-content: $val;
+        }
+    }
+    @each $val in $align-values{
+        .lg-align-items-#{$val}{
+            align-items: $val;
+        }
+        .lg-align-content-#{$val}{
+            align-content: $val;
+        }
+        .lg-align-self-#{$val}{
+            align-self: $val;
+        }
+    }
+    @each $var in $float {
+        .lg-float-#{$var}{
+            float:$var;
+        }
+    }
+    @each $val in $text-values{
+        .lg-text-#{$val}{
+            text-align:$val;
+        }
+    }
+    @each $key,$val in $grid-gaps {
+        .lg-gap-#{$key}{
+            margin-left: -$val;
+            margin-right: -$val;
+        }
+    }
+    @each $key,$val in $mx{
+        .lg-my-#{$key}{
+            margin-top: $val;
+            margin-bottom: $val;
+        }
+        .lg-mx-#{$key}{
+            margin-left: $val;
+            margin-right: $val;
+        }
+        .lg-py-#{$key}{
+            padding-top: $val;
+            padding-bottom: $val;
+        }
+        .lg-px-#{$key}{
+            padding-left: $val;
+            padding-right: $val;
+        }
+    }
+
+}
+@include xl{
+    @for $i from 1 through $grid-columns{
+        .col-#{$i}{
+            box-sizing: border-box;
+            flex-grow:0;
+            width: math.div($i * 100%,$grid-columns);  
+        }
+        .col-xl-#{$i}{
+            box-sizing: border-box;
+            flex-grow:0;
+            width: math.div($i * 100%,$grid-columns);
+        }
+    }
+    @each $val in $layout-values{
+        .xl-justify-#{$val}{
+            justify-content: $val;
+        }
+    }
+    @each $val in $align-values{
+        .xl-align-items-#{$val}{
+            align-items: $val;
+        }
+        .xl-align-content-#{$val}{
+            align-content: $val;
+        }
+        .xl-align-self-#{$val}{
+            align-self: $val;
+        }
+    }
+    @each $var in $float {
+        .xl-float-#{$var}{
+            float:$var;
+        }
+    }
+    @each $val in $text-values{
+        .xl-text-#{$val}{
+            text-align:$val;
+        }
+    }
+    @each $key,$val in $grid-gaps {
+        .xl-gap-#{$key}{
+            margin-left: -$val;
+            margin-right: -$val;
+        }
+    }
+    @each $key,$val in $mx{
+        .xl-my-#{$key}{
+            margin-top: $val;
+            margin-bottom: $val;
+        }
+        .xl-mx-#{$key}{
+            margin-left: $val;
+            margin-right: $val;
+        }
+        .xl-py-#{$key}{
+            padding-top: $val;
+            padding-bottom: $val;
+        }
+        .xl-px-#{$key}{
+            padding-left: $val;
+            padding-right: $val;
+        }
+    }
+}
+@include xxl{
+    @for $i from 1 through $grid-columns{
+        .col-xxl-#{$i}{
+            box-sizing: border-box;
+            flex-grow:0;
+            width: math.div($i * 100%,$grid-columns);
+        }
+    }
+}

@@ -1,0 +1,279 @@
+@use 'sass:math';
+$i: unquote("!important");
+
+%card-layout{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 400px;
+    margin: $margin-c;
+}
+.card{
+    @extend %card-layout;
+    border-radius:math.div($border-radius-card, 4);
+    overflow: hidden;
+    box-shadow: $box-shadow-card;
+    border-top:  $border-top-card;
+    border-left:$border-left-card;
+    background: $background-card;
+    backdrop-filter: $backdrop-filter-card;
+    .card-header{
+        position: absolute;
+        top: 0;
+        border-bottom:$a-border-bottom;
+        height: 50px;
+        width: 100%;
+        .card-title{
+            text-transform: uppercase;
+            font-size: $a-font-size-lg;
+            font-weight: bold;
+        }
+    }
+    .card-body{
+        margin-top: 10px;
+        height: 300px;
+        width: 100%;
+        .card-img{
+            position: relative;
+            height: 70%;
+            width: 70%;
+            img{
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+        a{
+            text-decoration: underline;
+        }
+    }
+    .card-footer{
+        position: absolute;
+        bottom: 0;
+        border-top:$a-border-bottom;
+        height: 50px;
+        width: 100%;
+        
+    }
+}
+
+.card-neuro{
+  @extend .card;
+    background: #2f363e;
+    box-shadow: 25px 25px 75px rgba(0,0,0,.25), 10px 10px 70px rgba(0,0,0,.25), inset 5px 5px 10px rgba(0,0,0,.5), inset 5px 5px 20px rgba(255,255,255,.2), inset -5px -5px 15px rgba(0,0,0,.75);
+    border-radius: 20px;
+    padding: 50px;
+   
+}
+.card-clay{
+    @extend .card;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05),rgba(0,0,0,0.05));
+    box-shadow: 10px 10px 20px rgba(0,0,0,.1), -5px -5px 10px #fff, inset -5px -5px 5px rgba(255,255,255,.5), inset 5px 5px 5px rgba(0,0,0,.05);
+}
+
+@each $key,$val in $colors {
+    .card-#{$key}{
+        @extend .card;
+        background:$val $i;
+       
+    }
+    @if ($val != black and $val != white) {
+
+    @for $i from 1 to 9 {
+        .card-#{$key}-light-#{$i}{
+          background: mix(white, $val,$i * 10);
+        }  
+        .card-#{$key}-dark-#{$i}{
+            background: mix(black, $val,$i * 10);
+          }  
+      }
+    }
+    .card-neuro-#{$key}{
+        @extend .card-neuro;
+        box-shadow:5px 5px 5px lighten($color: $val, $amount:10%), 5px 5px 5px lighten($color: $val, $amount:10%), inset 5px 5px 10px lighten($color: $val, $amount: 0.1), inset 5px 5px 20px rgba(255,255,255,.2), inset 5px 5px 10px lighten($color: $val, $amount:25%);
+        background:$val;
+    }
+    .card-clay-#{$key}{
+        @extend .card-clay;
+        background:$val;
+        box-shadow:inset 10px 10px 20px lighten($color: $val, $amount:10%),inset -5px -5px 10px lighten($color: $val, $amount:0%), inset -5px -5px 5px rgba(255,255,255,.5), inset 5px 5px 5px lighten($color: $val, $amount:10%);
+    }
+}
+@each $key,$val in $gradients {
+    .card-g-#{$key}{
+        @extend .card;
+        background:$val $i;
+    }
+    .card-g-neuro-#{$key}{
+        @extend .card-neuro;
+        background:$val $i;
+    }
+    .card-g-clay-#{$key}{
+        @extend .card-clay;
+        background:$val $i;
+    }
+}
+// @debug 'asura'; 
+
+.card-gr{
+    font-family: consolas;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 0;
+    .contain{
+        position: relative;
+        width: 320px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 30px;
+        transition: .5s;
+        &::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            border-radius: 8px;
+            transform: skewX(15deg);
+            transition: .5s;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            border-radius: 8px;
+            transform: skewX(15deg);
+            transition: .5s;
+            filter: blur(30px);   
+            }
+            &:hover::before,
+            &:hover::after{
+                transform: skewX(0deg);
+                left: 20px;
+                width: calc(100% - 90px);
+        }
+        &:nth-child(1)::before, &:nth-child(1)::after{
+            background: linear-gradient(315deg,#ffbc00,#ff0058);
+        }
+        span{
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 50;
+            pointer-events: none;
+            &::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius:8px;
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(10px);
+                opacity: 0;
+                transition: .5s;
+                animation: animate 2s ease-in-out infinite;
+                box-shadow: 0 5px 15px rgba(0,0,0,.05);
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                border-radius:8px;
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(10px);
+                opacity: 0;
+                transition: .5s;
+                animation: animate 2s ease-in-out infinite;
+                box-shadow: 0 5px 15px rgba(0,0,0,.05);
+                animation-delay: -1s;
+                @keyframes animate {
+                    0%,100%{
+                        transform: translateY(10px);
+                    }
+                    50%{
+                        transform: translateY(-10px);
+                    }
+                }
+            }
+        }
+        &:hover span::before{
+            top: -50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+        &:hover span::after{
+            bottom: -50px;
+            right: 50px;
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+        &:hover .content{
+            left: -25px;
+            padding: 60px 40px;
+        }
+        .content{
+            position: relative;
+            z-index: 1;
+            left: 0;
+            padding: 20px 40px;
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transform: 0.5s;
+            color: #fff;
+            h2{
+                font-size: 2em;
+                color: #fff;
+                margin-bottom: 10px;
+            }
+            p{
+                font-size: 1.1em;
+                margin-bottom: 10px;
+                line-height: 1.4em;
+            }
+            a{
+                display: inline-block;
+                font-size: 1.1em;
+                color: #111;
+                background: #fff;
+                padding: 10px;
+                border-radius: 4px;
+                text-decoration: none;
+                font-weight: 700;
+                margin-top: 5px;
+            }
+        }
+    }
+}
+@each $key,$val in $card-gradients {
+    .card-gr-#{$key}{
+        @extend .card-gr;
+        .contain:nth-child(1)::before,
+        .contain:nth-child(1)::after{
+          background: $val $i;
+         }
+    }
+}
